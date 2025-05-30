@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RESUME MATCHER - Analyze Your Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <div class="logo">RESUME_MATCHER</div>
+    <nav>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">ATS Resume Templates</a></li>
+        <li><a href="#">Cover Letter</a></li>
+        
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a class="login" href="/login">Log In</a>
+      <a class="signup" href="/signup">Sign Up</a>
+    </div>
+  </header>
+
+  <section class="main-content">
+    <div class="hero">
+      <h1>Transform your resume to unlock more interviews.</h1>
+      <p>Jobscan helps you optimize your resume for any job, highlighting the key experience and skills recruiters need to see.</p>
+      <button>Analyze your resume</button>
+    </div>
+
+    <div class="scan-preview">
+      <div class="left-panel">
+        <div class="match-rate">
+          <p>Match Rate</p>
+          <div class="circle"><span>67%</span></div>
+        </div>
+        <button>Upload & Rescan</button>
+        <button class="power-edit">Power Edit</button>
+
+        <div class="progress-metrics">
+          <div class="metric">
+            <label>Searchability <span>5 issues to fix</span></label>
+            <div class="bar"><div class="bar-fill" style="width: 70%"></div></div>
+          </div>
+          <div class="metric">
+            <label>Hard Skills <span>1 issue to fix</span></label>
+            <div class="bar"><div class="bar-fill" style="width: 90%"></div></div>
+          </div>
+          <div class="metric">
+            <label>Soft Skills <span>1 issue to fix</span></label>
+            <div class="bar"><div class="bar-fill" style="width: 85%"></div></div>
+          </div>
+          <div class="metric">
+            <label>Recruiter Tips <span>3 issues to fix</span></label>
+            <div class="bar"><div class="bar-fill" style="width: 40%"></div></div>
+          </div>
+          <div class="metric">
+            <label>Formatting <span>5 issues to fix</span></label>
+            <div class="bar"><div class="bar-fill" style="width: 75%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <h3>Searchability <span>(IMPORTANT)</span></h3>
+        <p>Applicant Tracking Systems (ATS) are computers that process your resume to understand your work history and relevance to the job description. These findings typically include your work experience, contact info, and email address.</p>
+        <p><strong>Tip:</strong> Complete all checks below to ensure your resume is easily searchable by recruiters and ATS.</p>
+        <div class="job-section">
+          <p>ATS Tip</p>
+          <span>Missing job name & URL</span>
+        </div>
+        <div class="job-section">
+          <p>Contact Information</p>
+          <span>Email and phone present</span>
+        </div>
+        <div class="job-section">
+          <p>Summary</p>
+          <span>Good summary found</span>
+        </div>
+        <div class="job-section">
+          <p>Section Headings</p>
+          <span>Needs update</span>
+        </div>
+        <div class="job-section">
+          <p>Job Title Match</p>
+          <span>Title not found</span>
+        </div>
+        <div class="job-section">
+          <p>Date Formatting</p>
+          <span>Correct</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <form id="resumeForm" action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" id="resumeInput" name="resume" style="display: none;" />
+  </form>
+
+  <script>
+    const scanButton = document.querySelector(".hero button");
+    const fileInput = document.getElementById("resumeInput");
+    const resumeForm = document.getElementById("resumeForm");
+
+    scanButton.addEventListener("click", () => {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files.length > 0) {
+        resumeForm.submit();
+      }
+    });
+  </script>
+
+</body>
+</html>

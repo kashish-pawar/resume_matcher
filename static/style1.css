@@ -1,0 +1,164 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  /* background-color: #f7f9fb; */
+  background-color: #ccccf4;
+}
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-right: 1px solid #e0e0e0;
+  height: 100vh;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+/* .circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 10px solid #00c389;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px auto;
+  color: #00c389;
+} */
+
+.circle-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 20px auto;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  stroke-dasharray: 314; /* 2 * π * r where r = 50 */
+  stroke-dashoffset: 0;
+}
+
+.progress-ring-circle {
+  stroke-dasharray: 314;
+  stroke-dashoffset: 314;
+  transition: stroke-dashoffset 1s ease-out;
+}
+
+.score-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: #00c389;
+}
+
+.upload,
+.power {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #0072ff;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+}
+
+.category-list li {
+  margin: 15px 0;
+}
+
+.category-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.progress {
+  height: 6px;
+  background-color: #eee;
+  margin: 5px 0;
+  border-radius: 3px;
+}
+
+.bar {
+  height: 100%;
+  background-color: #00c389;
+  border-radius: 3px;
+}
+
+.issue {
+  font-size: 12px;
+  color: #999;
+}
+
+.guide-link {
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #0072ff;
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+  background-color: #fff; 
+}
+
+.content h2 {
+  margin-top: 0;
+}
+
+.tag {
+  background-color: #333;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.tip {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-left: 4px solid #00c389;
+  margin-bottom: 20px;
+}
+
+.details .row {
+  margin-bottom: 15px;
+}
+
+.status {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}

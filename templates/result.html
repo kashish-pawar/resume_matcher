@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Match Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h2>Match Rate</h2>
+      <div class="circle-container">
+        <svg class="progress-ring" width="120" height="120">
+          <circle class="progress-ring-bg" stroke="#eee" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+          <circle class="progress-ring-circle" stroke="#00c389" stroke-width="10" fill="transparent" r="50" cx="60" cy="60"/>
+        </svg>
+        <div class="score-text" id="score-text">{{ score }}%</div>
+      </div>      
+      <button class="upload" onclick="triggerFileUpload()">Upload & Rescan</button>
+      <form id="rescan-form" action="/upload" method="POST" enctype="multipart/form-data" style="display: none;">
+        <input type="file" id="file-input" name="resume" required />
+      </form>
+      
+      <button class="power">⚡ Power Edit</button>
+      <ul class="category-list">
+        {% for key, value in metrics.items() %}
+        <li>
+          <div class="category-name">{{ key }}</div>
+          <div class="progress">
+            <div class="bar" style="width: {{ value }}%"></div>
+          </div>
+          <span class="issue">{{ 6 - loop.index }} issues to fix</span>
+        </li>
+        {% endfor %}
+      </ul>
+      <a href="/" class="guide-link">📘 Guide me</a>
+    </div>
+
+    <div class="content">
+      <h2>Searchability <span class="tag">IMPORTANT</span></h2>
+      <p class="tip"><strong>Tip:</strong> Complete all checks below to ensure your resume is easily searchable by recruiters and ATS.</p>
+      <div class="details">
+        {% for suggestion in suggestions %}
+        <div class="row">
+          {% if "✅" in suggestion %}
+            <span class="status green">✅</span> {{ suggestion.replace("✅", "") }}
+          {% else %}
+            <span class="status red">❌</span> {{ suggestion.replace("❌", "") }}
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const score = parseInt(document.getElementById("score-text").innerText);
+      const circle = document.querySelector('.progress-ring-circle');
+      const radius = 50;
+      const circumference = 2 * Math.PI * radius;
+
+      circle.style.strokeDasharray = `${circumference} ${circumference}`;
+      const offset = circumference - (score / 100) * circumference;
+      circle.style.strokeDashoffset = offset;
+    });
+
+    function triggerFileUpload() {
+      const fileInput = document.getElementById('file-input');
+      fileInput.click();
+
+      fileInput.onchange = function () {
+        if (fileInput.files.length > 0) {
+          document.getElementById('rescan-form').submit();
+        }
+      };
+    }
+  </script>
+</body>
+</html>
